@@ -23,15 +23,15 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "Aloe",
-"speed": 7.0
-}, {
 "frames": [ ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "Alocasia",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Aloe",
+"speed": 7.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -44,12 +44,13 @@ script = ExtResource( 2 )
 [node name="background" type="TextureRect" parent="."]
 margin_right = 480.0
 margin_bottom = 720.0
+mouse_filter = 2
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CollectTimer" type="Timer" parent="."]
+[node name="BarProgress" type="Timer" parent="."]
 
 [node name="Bar" parent="." instance=ExtResource( 8 )]
 margin_left = 65.5159
@@ -84,24 +85,27 @@ __meta__ = {
 visible = false
 position = Vector2( -146.924, -360.709 )
 
-[node name="PruningMain" parent="MenuButton" instance=ExtResource( 14 )]
-visible = false
-position = Vector2( -146.924, -360.709 )
-
 [node name="WateringMain" parent="MenuButton" instance=ExtResource( 15 )]
 visible = false
 position = Vector2( -146, -360 )
+
+[node name="PruningMain" parent="MenuButton" instance=ExtResource( 14 )]
+visible = false
+position = Vector2( -146.924, -360.709 )
+z_index = 1
 
 [node name="Shop" parent="." instance=ExtResource( 9 )]
 visible = false
 
 [node name="MainHUD" parent="." instance=ExtResource( 10 )]
-[connection signal="timeout" from="CollectTimer" to="." method="_on_CollectTimer_timeout"]
+
+[connection signal="timeout" from="BarProgress" to="." method="_on_BarProgress_timeout"]
 [connection signal="collect" from="MenuButton" to="." method="collect"]
 [connection signal="go" from="MenuButton" to="MenuButton/WateringMain" method="_on_MenuButton_go"]
 [connection signal="hide" from="MenuButton/SunlightMain" to="MainHUD" method="_on_SunlightMain_hide"]
-[connection signal="hide" from="MenuButton/PruningMain" to="MainHUD" method="_on_PruningMain_hide"]
 [connection signal="hide" from="MenuButton/WateringMain" to="MainHUD" method="_on_WateringMain_hide"]
+[connection signal="hide" from="MenuButton/PruningMain" to="MainHUD" method="_on_PruningMain_hide"]
 [connection signal="hide" from="Shop" to="MainHUD" method="_on_Shop_hide"]
 [connection signal="purchase" from="Shop" to="." method="_on_Shop_purchase"]
 [connection signal="update_bg" from="Shop" to="." method="_on_Shop_update_bg"]
+[connection signal="update_plant" from="Shop" to="." method="_on_Shop_update_plant"]
