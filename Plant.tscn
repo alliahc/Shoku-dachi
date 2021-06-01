@@ -23,15 +23,15 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "Alocasia",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "Aloe",
 "speed": 7.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "Alocasia",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -39,6 +39,7 @@ extents = Vector2( 53.37, 83.6068 )
 
 [node name="Plant" type="Area2D"]
 position = Vector2( -0.396851, 0 )
+collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="background" type="TextureRect" parent="."]
@@ -98,7 +99,6 @@ z_index = 1
 visible = false
 
 [node name="MainHUD" parent="." instance=ExtResource( 10 )]
-
 [connection signal="timeout" from="BarProgress" to="." method="_on_BarProgress_timeout"]
 [connection signal="collect" from="MenuButton" to="." method="collect"]
 [connection signal="go" from="MenuButton" to="MenuButton/WateringMain" method="_on_MenuButton_go"]

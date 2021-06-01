@@ -19,6 +19,7 @@ height = 63.8193
 
 [node name="SunlightPlayer" type="Area2D"]
 position = Vector2( 233.871, 362.577 )
+collision_mask = 0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
